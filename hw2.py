@@ -32,11 +32,26 @@ for article in bookname_articles:
         "rating": rating
     }
     books.append(book)
-# 將結果存成 JSON 檔案
-data = {"book": books}
+    # 將結果存成 JSON 檔案
+    data = {"book": books}
+    
+        # 第三步：將列表轉換成 JSON 格式，並輸出到檔案中
+    try:
+        with open("book&star.json", "w", encoding="utf-8") as f:
+            json.dump(books, f, ensure_ascii=False, indent=4)
+        print("\n成功將結果儲存至 book&star.json 檔案。")
+    except (IOError, OSError) as e:
+        print(f"\n錯誤：無法將結果寫入檔案。 {e}")
+    
+    # 列印結果
+    print(json.dumps(books, ensure_ascii=False, indent=4))
 
-with open("book.json", "w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=4)
+# 處理網路請求或 HTTP 錯誤
+except requests.exceptions.RequestException as e:
+    print(f"錯誤：無法取得網頁內容。 {e}")
+# 處理 HTML 解析或標籤尋找過程中的錯誤
+except (AttributeError, IndexError) as e:
+    print(f"錯誤：解析網頁內容時發生錯誤。可能是網頁結構已變更。 {e}")
 
-print("已將結果存成 prices.json")
+
 
