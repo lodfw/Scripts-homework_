@@ -42,7 +42,6 @@ try:
         }
         books.append(book)
     # 輸出為 JSON 格式
-    # 將結果存成 JSON 檔案
 
         with open("book&rank.json", "w", encoding="utf-8") as f:
             json.dump(books, f, ensure_ascii=False, indent=4)
@@ -53,4 +52,5 @@ except requests.exceptions.RequestException as e:
 # 處理 HTML 解析或標籤尋找過程中的錯誤
 except (AttributeError, IndexError) as e:
     print(f"錯誤：解析網頁內容時發生錯誤。可能是網頁結構已變更。 {e}")
+
 
