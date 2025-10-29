@@ -32,7 +32,11 @@ for article in bookname_articles:
         "rating": rating
     }
     books.append(book)
-#print(json.dumps(books, indent=2, ensure_ascii=False))
-print("書名列表：")
-print(json.dumps(books, indent=2, ensure_ascii=False))
+# 將結果存成 JSON 檔案
+data = {"book": books}
+
+with open("book.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+
+print("已將結果存成 prices.json")
 
